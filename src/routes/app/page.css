@@ -1,0 +1,75 @@
+.max-width-wrapper {
+  max-width: calc(1336rem / 16);
+  margin: 0 auto;
+  height: 100%;
+}
+
+.app-table-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5rem;
+  padding-inline: 1rem;
+}
+
+body {
+  background: var(--gray-100);
+  color: var(--gray-950);
+}
+
+a {
+  color: var(--primary-500);
+  text-underline-offset: var(--link-offset);
+}
+
+table {
+  padding-top: 2rem;
+  border-spacing: 0.25rem;
+  border-radius: 0.5rem;
+}
+
+th {
+  font-weight: 600;
+}
+
+tr {
+  text-align: left;
+  max-width: 100%;
+}
+
+td {
+  font-weight: 400;
+  background: var(--secondary-300);
+}
+
+th {
+  background: var(--primary-200);
+  color: var(--primary-950);
+}
+
+table a {
+  color: var(--secondary-950);
+  text-underline-offset: var(--link-offset);
+}
+
+table tr td,
+table tr th {
+  padding: 4px 16px;
+  border-radius: 0.125rem;
+}
+
+tr svg {
+  min-width: 1rem;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0px 16px;
+}
+
+h1 {
+  padding-bottom: 1rem;
+}
