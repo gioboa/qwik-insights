@@ -1,5 +1,6 @@
 header {
   align-items: center;
+  background: var(--bg-color-bright);
   border-bottom: 1px solid var(--border-color-default);
   display: flex;
   gap: var(--spacing-4);

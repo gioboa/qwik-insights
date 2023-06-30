@@ -81,8 +81,8 @@ body {
 }
 
 body.dark {
-  --bg-color-default: var(--gray-900);
-  --bg-color-bright: var(--gray-800);
+  --bg-color-default: var(--gray-800);
+  --bg-color-bright: var(--gray-900);
   --text-color-default: var(--white);
   --border-color-default: var(--gray-700);
 }
