@@ -12,7 +12,11 @@ export type AppRoutes =
   | "/app/[publicApiKey]/edit/"
   | "/app/[publicApiKey]/errors/"
   | "/app/[publicApiKey]/symbols/"
-  | "/app/[publicApiKey]/symbols/slow/";
+  | "/app/[publicApiKey]/symbols/slow/"
+  | "/auth/signIn/"
+  | "/auth/signOut/"
+  | "/auth/signUp/"
+  | "/dashboard/";
 
 export interface AppRouteMap {
   "/": {};
@@ -25,6 +29,10 @@ export interface AppRouteMap {
   "/app/[publicApiKey]/errors/": { publicApiKey: string };
   "/app/[publicApiKey]/symbols/": { publicApiKey: string };
   "/app/[publicApiKey]/symbols/slow/": { publicApiKey: string };
+  "/auth/signIn/": {};
+  "/auth/signOut/": {};
+  "/auth/signUp/": {};
+  "/dashboard/": {};
 }
 
 export interface AppRouteParamsFunction {
@@ -59,6 +67,10 @@ export interface AppRouteParamsFunction {
     route: "/app/[publicApiKey]/symbols/slow/",
     params: { publicApiKey: string }
   ): string;
+  (route: "/auth/signIn/", params?: {}): string;
+  (route: "/auth/signOut/", params?: {}): string;
+  (route: "/auth/signUp/", params?: {}): string;
+  (route: "/dashboard/", params?: {}): string;
 }
 
 export type AppLinkProps =
@@ -74,7 +86,8 @@ export type AppLinkProps =
   | { route: "/app/[publicApiKey]/edit/"; "param:publicApiKey": string }
   | { route: "/app/[publicApiKey]/errors/"; "param:publicApiKey": string }
   | { route: "/app/[publicApiKey]/symbols/"; "param:publicApiKey": string }
-  | {
-      route: "/app/[publicApiKey]/symbols/slow/";
-      "param:publicApiKey": string;
-    };
+  | { route: "/app/[publicApiKey]/symbols/slow/"; "param:publicApiKey": string }
+  | { route: "/auth/signIn/" }
+  | { route: "/auth/signOut/" }
+  | { route: "/auth/signUp/" }
+  | { route: "/dashboard/" };

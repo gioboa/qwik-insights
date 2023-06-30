@@ -11,6 +11,14 @@ import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
 import "@fontsource/poppins/800.css";
 
+export const paths = {
+  index: "/",
+  dashboard: "/dashboard",
+  signIn: "/auth/signIn",
+  signUp: "/auth/signUp",
+  signOut: "/auth/signOut",
+};
+
 export const onRequest: RequestHandler = async ({ env }) => {
   await initializeDbIfNeeded(async () =>
     drizzle(
