@@ -11,11 +11,6 @@
   padding-inline: 1rem;
 }
 
-body {
-  background: var(--gray-100);
-  color: var(--gray-950);
-}
-
 a {
   color: var(--primary-500);
   text-underline-offset: var(--link-offset);

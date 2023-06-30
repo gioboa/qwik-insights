@@ -1,7 +1,9 @@
 import { Slot, component$ } from "@builder.io/qwik";
-import { routeLoader$ } from "@builder.io/qwik-city";
+
+import Layout from "~/components/layout";
 import { getUserFromEvent } from "~/server/auth/auth";
 import { paths } from "../layout";
+import { routeLoader$ } from "@builder.io/qwik-city";
 
 export const useAnonymousRoute = routeLoader$(async (event) => {
   if (await getUserFromEvent(event)) {
@@ -10,5 +12,9 @@ export const useAnonymousRoute = routeLoader$(async (event) => {
 });
 
 export default component$(() => {
-  return <Slot />;
+  return (
+    <Layout>
+      <Slot />
+    </Layout>
+  );
 });

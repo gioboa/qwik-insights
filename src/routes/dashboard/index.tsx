@@ -1,7 +1,8 @@
+import Layout from "~/components/layout";
 import { component$ } from "@builder.io/qwik";
-import { routeLoader$ } from "@builder.io/qwik-city";
 import { getUserFromEvent } from "~/server/auth/auth";
 import { paths } from "../layout";
+import { routeLoader$ } from "@builder.io/qwik-city";
 
 export const useAuthRoute = routeLoader$(async (event) => {
   const user = await getUserFromEvent(event);
@@ -13,5 +14,5 @@ export const useAuthRoute = routeLoader$(async (event) => {
 
 export default component$(() => {
   const userSig = useAuthRoute();
-  return <div>User {userSig.value.email}</div>;
+  return <Layout>User {userSig.value.email}</Layout>;
 });

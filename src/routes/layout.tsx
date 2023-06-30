@@ -31,9 +31,5 @@ export const onRequest: RequestHandler = async ({ env }) => {
 };
 
 export default component$(() => {
-  return (
-    <main>
-      <Slot />
-    </main>
-  );
+  return <Slot />;
 });
