@@ -1,15 +1,18 @@
+import { component$, useVisibleTask$ } from "@builder.io/qwik";
+import { getUserFromEvent, updateAuthCookies } from "~/server/auth/auth";
 import {
-  Link,
   globalAction$,
   routeLoader$,
   useNavigate,
   z,
   zod$,
 } from "@builder.io/qwik-city";
-import { component$, useVisibleTask$ } from "@builder.io/qwik";
-import { getUserFromEvent, updateAuthCookies } from "~/server/auth/auth";
 
+import AppsIcon from "~/components/icons/apps";
+import Button from "~/components/button";
+import GithubIcon from "~/components/icons/github";
 import Layout from "~/components/layout";
+import { createSupabase } from "~/server/auth/supabase";
 import { paths } from "./layout";
 
 export const useUser = routeLoader$((event) => {
@@ -27,10 +30,23 @@ export const useSetSessionAction = globalAction$(
   })
 );
 
+export const useGitHubAction = globalAction$(async (_, event) => {
+  const supabase = createSupabase(event);
+
+  const response = await supabase.auth.signInWithOAuth({
+    provider: "github",
+  });
+  return {
+    success: true,
+    url: response.data.url || "",
+  };
+});
+
 export default component$(() => {
   const userSig = useUser();
   const navigate = useNavigate();
   const action = useSetSessionAction();
+  const gitHubAction = useGitHubAction();
 
   useVisibleTask$(async () => {
     const hash = window.location.hash.substring(1);
@@ -58,12 +74,31 @@ export default component$(() => {
       return;
     }
 
-    navigate(paths.index);
+    navigate(paths.dashboard);
   });
 
   return (
     <Layout mode="bright">
-      Future home of Qwik Insights! {userSig.value?.email}
+      <h1>Log in to Qwik Insights </h1>
+
+      {userSig.value?.email ? (
+        <Button onClick$={() => navigate(paths.dashboard)}>
+          <AppsIcon /> Go to the Dashboard
+        </Button>
+      ) : (
+        <Button
+          theme="github"
+          onClick$={async () => {
+            const { value } = await gitHubAction.submit();
+            window.open(value.url, "_self");
+          }}
+        >
+          <GithubIcon />
+          Continue with GitHub
+        </Button>
+      )}
+
+      {/* Future home of Qwik Insights! {userSig.value?.email}{" "}
       {userSig.value?.email ? (
         <ul>
           <li>
@@ -85,7 +120,7 @@ export default component$(() => {
             <Link href={paths.signUp}>Sign Up</Link>
           </li>
         </ul>
-      )}
+      )} */}
     </Layout>
   );
 });
